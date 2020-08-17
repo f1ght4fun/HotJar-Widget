@@ -1,0 +1,17 @@
+:host {
+  #widget-selection-tool {
+    background: yellow;
+    clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+
+    > #selection-text {
+      color: black;
+      font-size: smaller;
+      margin-left: 15px;
+    }
+
+    #cancel-ic {
+      color: black;
+      font-weight: bolder;
+    }
+  }
+}

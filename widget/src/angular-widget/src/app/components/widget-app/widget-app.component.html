@@ -1,0 +1,43 @@
+<div id="widget-container" fxLayout="column">
+  <div class="header-text" fxLayout="column">
+    <div class="main" fxLayout="row">
+      <div class="text" [innerText]="'Build your funnel'"></div>
+      <ng-container *ngIf="(events$ | async)?.length as eventCnt">
+        <div class="step-count">{{ eventCnt }} STEPS</div>
+      </ng-container>
+    </div>
+    <div class="secondary" fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon class="secondary-icon">info</mat-icon>
+      <div class="secondary-text" [innerText]="'Navigate through your site and add the steps that will make up the funnel.'"></div>
+    </div>
+  </div>
+  <ng-container *ngIf="events$ | async as events">
+    <div class="capture-step" fxLayout="row" fxLayoutAlign="start center" *ngFor="let event of events; let i = index">
+      <div class="capture-cnt captured" [innerText]="i + 1"></div>
+      <div class="capture-event" fxFlex fxLayout="column">
+        <div class="capture-event-text" [innerText]="eventMap[event.type]"></div>
+        <div class="capture-event-value" [innerText]="event.payload"></div>
+      </div>
+      <div class="capture-cnt remove" fxLayout="column" fxLayoutAlign="center center" (click)="removeCapturedEvent($event, i)">
+        <mat-icon class="capture-event-remove-icon">clear</mat-icon>
+      </div>
+    </div>
+    <div id="capture-step" class="capture-step" fxLayout="row">
+      <div class="capture-cnt new" [innerText]="events.length + 1"></div>
+      <div class="capture-table" fxFlex fxLayout="column">
+        <div class="capture-option" (click)="capturePageVisit($event)">
+          <div class="capture-option-text" [innerText]="'User visits current page'"></div>
+          <div class="capture-option-key" [innerText]="'ALT + p'"></div>
+        </div>
+        <div class="capture-option" (click)="captureSelection($event)">
+          <div class="capture-option-text" [innerText]="'Capture specific element'"></div>
+          <div class="capture-option-key" [innerText]="'ALT + e'"></div>
+        </div>
+      </div>
+    </div>
+    <button *ngIf="!!events.length" mat-button id="save-funnel" fxFlexAlign="center" (click)="saveFunnel($event)">Save Funnel</button>
+  </ng-container>
+  <button mat-icon-button id="close-btn">
+    <mat-icon id="close-widget" class="size-16" inline="true">clear</mat-icon>
+  </button>
+</div>

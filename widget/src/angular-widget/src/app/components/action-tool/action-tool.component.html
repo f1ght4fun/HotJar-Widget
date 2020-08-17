@@ -1,0 +1,10 @@
+<div id="widget-action-tool" fxFill fxLayout="row" fxLayoutAlign="center center">
+  <mat-select disableOptionCentering="true" [placeholder]="'Select Action'" [panelClass]="'hotjar-select'">
+    <mat-option
+      *ngFor="let item of actionOptions"
+      [value]="item.value"
+      [innerText]="item.text"
+      [mat-dialog-close]="item.value"
+    ></mat-option>
+  </mat-select>
+</div>

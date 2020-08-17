@@ -1,0 +1,12 @@
+:host {
+  ::ng-deep {
+    .mat-select-placeholder {
+      color: black;
+      font-size: smaller;
+    }
+
+    .mat-select-arrow {
+      color: black;
+    }
+  }
+}
